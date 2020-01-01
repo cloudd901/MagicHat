@@ -12,8 +12,7 @@ It is using a specific interface in IRandomTool.cs so it can be plug-n-play with
 - Draw the hat.
 - Animate the hat.
 
-    - Neet to replace screenshot//// lol
-![Icon](https://github.com/cloudd901/MagicWheel/blob/master/WheelScreen.jpg)
+![Icon](https://github.com/cloudd901/MagicHat/blob/master/HatScreen.jpg)
 
 The example script provided includes nearly all options available for the hat.
 Note, this hat does not use as many options as the wheel version.
