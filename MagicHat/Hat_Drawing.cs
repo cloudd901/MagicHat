@@ -33,8 +33,6 @@ namespace RandomTool
         private void DrawHat(Entry e = null)
         {
             if (!ToolSize.initialized) { if (AllowExceptions) { throw new InvalidOperationException("Please initialize hat using Draw()."); } else { return; } }
-            //int entries = EntryList.Count;
-            //if (entries < 1) { if (AllowExceptions) { throw new IndexOutOfRangeException("Must have more than one Entry"); } else { return; } }
             if (e == null) { SetPictureBoxes(); }
 
             int shadowLength = ToolProperties.ShadowVisible ? ToolProperties.ShadowLength : 0;

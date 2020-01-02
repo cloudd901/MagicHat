@@ -41,18 +41,11 @@ namespace RandomTool
             _ControlHat.SendToBack();
             _ControlHat.Update();
         }
-        private Point[] GetPictureBoxPoints()
-        {
-            Point hatPoint = new Point(0, 0);
-            Point shadowPoint = new Point(0, 0);
-            return new Point[] { shadowPoint, hatPoint };
-        }
+
         private void SetPictureBoxes()
         {
-            Point[] controlPoints = GetPictureBoxPoints();
-
-            _ControlHat.Top = controlPoints[1].Y;
-            _ControlHat.Left = controlPoints[1].X;
+            _ControlHat.Top = (int)ToolSize.Top;
+            _ControlHat.Left = (int)ToolSize.Left;
             _ControlHat.ClientSize = new Size(ToolSize.Diameter + ToolProperties.ShadowLength, ToolSize.Diameter + ToolProperties.ShadowLength);
             _ControlHat.Visible = true;
         }
