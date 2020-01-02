@@ -30,84 +30,6 @@ namespace RandomTool
             ToolSize.initialized = true;
             Refresh();
         }
-        //private void DrawArrow()
-        //{
-        //    if (ToolProperties.arrowImage == null)
-        //    {
-        //        ToolProperties.arrowImage = new Bitmap(20, 20);
-        //        using (Graphics graphics = Graphics.FromImage(ToolProperties.arrowImage))
-        //        {
-        //            graphics.SmoothingMode = SmoothingMode.AntiAlias;
-        //            graphics.CompositingQuality = CompositingQuality.HighQuality;
-        //            graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-
-        //            graphics.FillPolygon(Brushes.Black, new Point[] { new Point(0, 0), new Point(20, 0), new Point(10, 12), });
-        //            graphics.FillPolygon(Brushes.White, new Point[] { new Point(5, 2), new Point(15, 2), new Point(10, 5), });
-        //            graphics.DrawImage(ToolProperties.arrowImage, new Point(0, 0));
-        //        }
-        //    }
-        //    _ControlArrow.Image = ToolProperties.arrowImage;
-
-        //    if (ToolProperties.ArrowPosition != ToolProperties.currentArrowDirection || ToolProperties.isNewArrowImage)
-        //    {
-        //        _ControlArrow.Visible = false;
-        //        Bitmap newImage = new Bitmap(20, 20);
-        //        PointF arrowCenter = new PointF((float)newImage.Width/2, (float)newImage.Height/2);
-        //        using (Graphics graphics = Graphics.FromImage(newImage))
-        //        {
-        //            graphics.Clear(Color.Transparent);
-        //            graphics.SmoothingMode = SmoothingMode.AntiAlias;
-        //            graphics.CompositingQuality = CompositingQuality.HighQuality;
-        //            graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                    
-        //            Matrix rotationMatrix = new Matrix();
-        //            rotationMatrix.RotateAt(0, arrowCenter);
-        //            graphics.Transform = rotationMatrix;
-
-        //            if (ToolProperties.currentArrowDirection == ArrowLocation.Top || ToolProperties.isNewArrowImage)
-        //            {
-        //                rotationMatrix.RotateAt(90 * (long)ToolProperties.ArrowPosition, arrowCenter);
-        //            }
-        //            else if (ToolProperties.currentArrowDirection == ArrowLocation.Right)
-        //            {
-        //                if (ToolProperties.ArrowPosition == ArrowLocation.Bottom)
-        //                { rotationMatrix.RotateAt(90, arrowCenter); }
-        //                else if (ToolProperties.ArrowPosition == ArrowLocation.Left)
-        //                { rotationMatrix.RotateAt(180, arrowCenter); }
-        //                else if (ToolProperties.ArrowPosition == ArrowLocation.Top)
-        //                { rotationMatrix.RotateAt(270, arrowCenter); }
-        //            }
-        //            else if (ToolProperties.currentArrowDirection == ArrowLocation.Bottom)
-        //            {
-        //                if (ToolProperties.ArrowPosition == ArrowLocation.Left)
-        //                { rotationMatrix.RotateAt(90, arrowCenter); }
-        //                else if (ToolProperties.ArrowPosition == ArrowLocation.Top)
-        //                { rotationMatrix.RotateAt(180, arrowCenter); }
-        //                else if (ToolProperties.ArrowPosition == ArrowLocation.Right)
-        //                { rotationMatrix.RotateAt(270, arrowCenter); }
-        //            }
-        //            else if (ToolProperties.currentArrowDirection == ArrowLocation.Left)
-        //            {
-        //                if (ToolProperties.ArrowPosition == ArrowLocation.Top)
-        //                { rotationMatrix.RotateAt(90, arrowCenter); }
-        //                else if (ToolProperties.ArrowPosition == ArrowLocation.Right)
-        //                { rotationMatrix.RotateAt(180, arrowCenter); }
-        //                else if (ToolProperties.ArrowPosition == ArrowLocation.Bottom)
-        //                { rotationMatrix.RotateAt(270, arrowCenter); }
-        //            }
-        //            ToolProperties.currentArrowDirection = ToolProperties.ArrowPosition;
-
-        //            graphics.Clear(_ControlArrow.BackColor);
-        //            graphics.Transform = rotationMatrix;
-        //            graphics.DrawImage(ToolProperties.arrowImage, new Point(0, 0));
-        //        }
-        //        ToolProperties.arrowImage = newImage;
-        //        _ControlArrow.Image = ToolProperties.arrowImage;
-        //        _ControlArrow.Visible = true;
-        //        ToolProperties.isNewArrowImage = false;
-        //    }
-        //    _ControlArrow.Refresh();
-        //}
         private void DrawHat(Entry e = null)
         {
             if (!ToolSize.initialized) { if (AllowExceptions) { throw new InvalidOperationException("Please initialize hat using Draw()."); } else { return; } }
@@ -120,27 +42,7 @@ namespace RandomTool
 
             using (Graphics graphics = Graphics.FromImage(ToolProperties.objectImage))
             {
-                Point[] controlPoints = GetPictureBoxPoints();
                 Pen pen = new Pen(ToolProperties.LineColor, ToolProperties.LineWidth);
-
-
-                //ToolProperties.objectImage3D = new Bitmap(ToolSize.Diameter + shadowLength, ToolSize.Diameter + shadowLength);
-                //using (Graphics graphics3D = Graphics.FromImage(ToolProperties.objectImage3D))
-                //{
-                //    if (ToolProperties.ShadowVisible)
-                //    {
-                //        graphics3D.SmoothingMode = SmoothingMode.AntiAlias;
-                //        graphics3D.CompositingQuality = CompositingQuality.HighQuality;
-                //        graphics3D.InterpolationMode = InterpolationMode.HighQualityBicubic;
-
-                //        graphics3D.FillEllipse(new SolidBrush(ToolProperties.ShadowColor), controlPoints[0].X, controlPoints[0].Y, ToolSize.Diameter - 2, ToolSize.Diameter - 2);
-                //        graphics3D.DrawEllipse(pen, controlPoints[0].X, controlPoints[0].Y, ToolSize.Diameter - 2, ToolSize.Diameter - 2);
-
-                //        graphics3D.DrawImage(ToolProperties.objectImage3D, new Point(0, 0));
-                //    }
-                //    _ControlHat3D.Image = ToolProperties.objectImage3D;
-                //    _ControlHat3D.Refresh();
-                //}
 
                 Image namesImage = new Bitmap(ToolSize.Diameter, ToolSize.Diameter);
                 Random r = new Random();
@@ -151,18 +53,18 @@ namespace RandomTool
                 graphics.CompositingQuality = CompositingQuality.HighQuality;
                 graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
 
-                float imgSize = ToolSize.Radius*2;
+                float imgSize = ToolSize.Radius * 2;
                 float imgHeight = imgSize * 0.81f;
                 float imgHeightAdj = (imgSize - imgHeight) / 2f;
                 //Radius = 200
                 SizeF sizeBase = new SizeF(imgSize, imgSize * 0.35f);
                 PointF pointBase = new PointF(0, imgHeightAdj);
 
-                SizeF sizeInner = new SizeF(imgSize/2f, imgSize*.10f);
-                PointF pointInner = new PointF(imgSize*0.25f, (imgSize*0.125f) + imgHeightAdj);//25
+                SizeF sizeInner = new SizeF(imgSize / 2f, imgSize * .10f);
+                PointF pointInner = new PointF(imgSize * 0.25f, (imgSize * 0.125f) + imgHeightAdj);//25
 
-                SizeF sizeTop = new SizeF(imgSize*0.62f, imgSize*0.25f);
-                PointF pointTop = new PointF(imgSize*0.19f, (imgSize*0.63f) + imgHeightAdj);
+                SizeF sizeTop = new SizeF(imgSize * 0.62f, imgSize * 0.25f);
+                PointF pointTop = new PointF(imgSize * 0.19f, (imgSize * 0.63f) + imgHeightAdj);
 
 
                 PointF[] pa1 = new PointF[] { new PointF(imgSize * 0.25f, imgSize * 0.175f), new PointF(imgSize * 0.235f, imgSize * 0.375f), new PointF(imgSize * 0.22f, imgSize * 0.5f), new PointF(imgSize * 0.21f, imgSize * 0.6f), new PointF(imgSize * 0.19f, imgSize * 0.75f) };
@@ -197,10 +99,6 @@ namespace RandomTool
                     i++;
                 }
 
-                //graphics.DrawCurve(pen, pa1);
-                //graphics.DrawCurve(pen, pa2);
-
-
                 brush1 = new SolidBrush(Color.Black);
                 brush2 = new SolidBrush(Color.FromArgb(55, 55, 55));
                 brush3 = new SolidBrush(ToolProperties.CenterColor);
@@ -215,57 +113,6 @@ namespace RandomTool
                 graphics.DrawEllipse(pen, pointBase.X, pointBase.Y, sizeBase.Width, sizeBase.Height);
                 graphics.FillEllipse(brush1, pointInner.X, pointInner.Y, sizeInner.Width, sizeInner.Height);
                 graphics.DrawEllipse(pen, pointInner.X, pointInner.Y, sizeInner.Width, sizeInner.Height);
-
-                //foreach (PointF p in pa6)
-                //{
-                //    graphics.DrawLine(new Pen(new SolidBrush(Color.Blue)), p.X, p.Y, p.X + 1, p.Y + 1);
-                //}
-
-                //graphics.DrawArc(new Pen(new SolidBrush(Color.White), 30), pa6[0].X, pa6[0].Y+15, pa6[6].X-pa6[0].X, 20, 360, 180);
-
-                //float angle = 360f / (float)entries;
-                //float currentangle = angle;
-
-                //List<PointF> pointList = new List<PointF>();
-                //PointF linePoint;
-                //for (int i = 0; i <= entries - 1; i++)
-                //{
-                //    EntryList[i].EntryLocation = currentangle - angle;
-                //    pointList.Add(new PointF((ToolSize.Radius - 10) * (float)Math.Cos(currentangle * Math.PI / 180F) + ToolSize.Center.X, (ToolSize.Radius - 10) * (float)Math.Sin(currentangle * Math.PI / 180F) + ToolSize.Center.Y));
-
-                //    int colorCorrection = i;
-                //    //Color correction needed for less than 4 entries
-                //    if (entries <= 2) { colorCorrection -= 1; if (colorCorrection < 0) { colorCorrection = entries - 1; } }
-                //    else if (entries == 3) { colorCorrection -= 2; if (colorCorrection == -1) { colorCorrection = entries - 1; } else if (colorCorrection == -2) { colorCorrection = entries - 2; } }
-
-                //    Color randomColor = Color.FromArgb(r.Next(256), r.Next(256), r.Next(256));
-                //    if (i == 0) { randomColor = Color.White; }
-                //    brush = new SolidBrush(EntryList[colorCorrection].Aura);
-
-                //    graphics.FillPie(brush, 1, 1, ToolSize.Diameter - 2, ToolSize.Diameter - 2, currentangle, angle);
-
-                //    linePoint = new PointF((ToolSize.Radius - 1) * (float)Math.Cos(currentangle * Math.PI / 180F) + ToolSize.Center.X, (ToolSize.Radius - 1) * (float)Math.Sin(currentangle * Math.PI / 180F) + ToolSize.Center.Y);
-
-                //    PointF newMidPoint;
-                //    if (ToolProperties.CenterDotVisible)
-                //    { newMidPoint = MidPoint(ToolSize.Center, linePoint, 4); }
-                //    else
-                //    { newMidPoint = ToolSize.Center; }
-                //    graphics.DrawLine(pen, newMidPoint, linePoint);
-                //    currentangle += angle;
-                //}
-                //linePoint = new PointF((ToolSize.Radius - 1) * (float)Math.Cos(currentangle * Math.PI / 180F) + ToolSize.Center.X, (ToolSize.Radius - 1) * (float)Math.Sin(currentangle * Math.PI / 180F) + ToolSize.Center.Y);
-                //PointF newPoint = MidPoint(ToolSize.Center, linePoint, 4);
-                //graphics.DrawLine(pen, newPoint, linePoint);
-
-                //if (entries <= 0) { graphics.FillEllipse(new SolidBrush(Color.LightGray), 1, 1, ToolSize.Diameter - 2, ToolSize.Diameter - 2); }
-                //graphics.DrawEllipse(pen, 1, 1, ToolSize.Diameter - 2, ToolSize.Diameter - 2);
-                //if (ToolProperties.CenterDotVisible)
-                //{
-                //    float centRadius = (float)(Math.Sqrt(Math.Pow((newPoint.X - ToolSize.Center.X), 2) + Math.Pow((newPoint.Y - ToolSize.Center.Y), 2))) * ToolProperties.CenterDotSize;
-                //    graphics.FillEllipse(new SolidBrush(ToolProperties.CenterDotColor), ToolSize.Center.X - (centRadius / 2), ToolSize.Center.Y - (centRadius / 2), centRadius, centRadius);
-                //    graphics.DrawEllipse(pen, ToolSize.Center.X - (centRadius / 2), ToolSize.Center.Y - (centRadius / 2), centRadius, centRadius);
-                //}
 
                 if (ToolProperties.CenterVisible && e != null)
                 {
@@ -289,79 +136,6 @@ namespace RandomTool
                             }
                             graphics.FillPolygon(brush3, pa6);
 
-                            //        for (int i = 0; i <= entries - 1; i++)
-                            //        {
-                            //            
-
-                            //            PointF midPoint1 = new Point(0, 0);
-                            //            PointF midPoint2 = new Point(0, 0);
-                            //            PointF midPoint = new Point(0, 0);
-
-                            //            PointF usePoint1 = pointList[i];
-                            //            PointF usePoint2 = new Point(0, 0);
-                            //            try { usePoint2 = pointList[i + 1]; } catch { usePoint2 = pointList[0]; }
-
-                            //            if (entries < 3)
-                            //            {
-                            //                if (i == 0)
-                            //                {
-                            //                    midPoint1 = new PointF((ToolSize.Radius - 20) * (float)Math.Cos(45 * Math.PI / 180F) + ToolSize.Center.X, (ToolSize.Radius - 20) * (float)Math.Sin(45 * Math.PI / 180F) + ToolSize.Center.Y);
-                            //                    midPoint2 = new PointF((ToolSize.Radius - 20) * (float)Math.Cos(135 * Math.PI / 180F) + ToolSize.Center.X, (ToolSize.Radius - 20) * (float)Math.Sin(135 * Math.PI / 180F) + ToolSize.Center.Y);
-                            //                }
-                            //                else if (i == 1)
-                            //                {
-                            //                    midPoint1 = new PointF((ToolSize.Radius - 20) * (float)Math.Cos(225 * Math.PI / 180F) + ToolSize.Center.X, (ToolSize.Radius - 20) * (float)Math.Sin(225 * Math.PI / 180F) + ToolSize.Center.Y);
-                            //                    midPoint2 = new PointF((ToolSize.Radius - 20) * (float)Math.Cos(315 * Math.PI / 180F) + ToolSize.Center.X, (ToolSize.Radius - 20) * (float)Math.Sin(315 * Math.PI / 180F) + ToolSize.Center.Y);
-                            //                }
-                            //            }
-                            //            else if (entries == 3)
-                            //            {
-                            //                if (i == 0)
-                            //                {
-                            //                    midPoint1 = new PointF((ToolSize.Radius - 20) * (float)Math.Cos(30 * Math.PI / 180F) + ToolSize.Center.X, (ToolSize.Radius - 20) * (float)Math.Sin(30 * Math.PI / 180F) + ToolSize.Center.Y);
-                            //                    midPoint2 = new PointF((ToolSize.Radius - 20) * (float)Math.Cos(90 * Math.PI / 180F) + ToolSize.Center.X, (ToolSize.Radius - 20) * (float)Math.Sin(90 * Math.PI / 180F) + ToolSize.Center.Y);
-                            //                }
-                            //                else if (i == 1)
-                            //                {
-                            //                    midPoint1 = new PointF((ToolSize.Radius - 20) * (float)Math.Cos(150 * Math.PI / 180F) + ToolSize.Center.X, (ToolSize.Radius - 20) * (float)Math.Sin(150 * Math.PI / 180F) + ToolSize.Center.Y);
-                            //                    midPoint2 = new PointF((ToolSize.Radius - 20) * (float)Math.Cos(210 * Math.PI / 180F) + ToolSize.Center.X, (ToolSize.Radius - 20) * (float)Math.Sin(210 * Math.PI / 180F) + ToolSize.Center.Y);
-                            //                }
-                            //                else if (i == 2)
-                            //                {
-                            //                    midPoint1 = new PointF((ToolSize.Radius - 20) * (float)Math.Cos(270 * Math.PI / 180F) + ToolSize.Center.X, (ToolSize.Radius - 20) * (float)Math.Sin(270 * Math.PI / 180F) + ToolSize.Center.Y);
-                            //                    midPoint2 = new PointF((ToolSize.Radius - 20) * (float)Math.Cos(330 * Math.PI / 180F) + ToolSize.Center.X, (ToolSize.Radius - 20) * (float)Math.Sin(330 * Math.PI / 180F) + ToolSize.Center.Y);
-                            //                }
-                            //            }
-                            //            else
-                            //            {
-                            //                midPoint1 = MidPoint(usePoint1, usePoint2);
-                            //                midPoint2 = MidPoint(midPoint1, usePoint2);
-                            //            }
-                            //            if (entries >= 35)
-                            //            {
-                            //                if (entries > 70) { midPoint1 = usePoint2; midPoint2 = usePoint2; }
-                            //                else
-                            //                {
-                            //                    int repeat = (entries / 10) - 1;
-                            //                    if (entries > 45) { repeat += 1; }
-                            //                    else if (entries > 50) { repeat += 2; }
-                            //                    else if (entries > 55) { repeat += 3; }
-                            //                    else if (entries > 60) { repeat += 5; }
-                            //                    midPoint2 = MidPoint(usePoint2, usePoint1, repeat);
-                            //                }
-                            //            }
-                            //            midPoint = MidPoint(midPoint2, midPoint1);
-
-                            //            //Adjust Text Angle
-                            //            double deltaX = Math.Pow((midPoint.X - ToolSize.Center.X), 2);
-                            //            double deltaY = Math.Pow((midPoint.Y - ToolSize.Center.Y), 2);
-                            //            double radians = Math.Atan2((ToolSize.Center.Y - midPoint.Y), (ToolSize.Center.X - midPoint.X));
-                            //            double textAngle = radians * ((180) / Math.PI);
-
-                            //Matrix rotationMatrix = new Matrix();
-                            //rotationMatrix.RotateAt((float)textAngle - 2, midPoint);
-                            //graphicsNames.Transform = rotationMatrix;
-
                             Font drawFont = new Font(ToolProperties.TextFontFamily, GetCorrectSize(e.Name), ToolProperties.TextFontStyle);
                             string drawText = "";
                             if (ToolProperties.TextToShow == TextType.NameAndID) { drawText = $"{e.Name}_{e.UniqueID}"; }
@@ -370,9 +144,8 @@ namespace RandomTool
                             StringFormat format = new StringFormat();
                             format.LineAlignment = StringAlignment.Center;
                             format.Alignment = StringAlignment.Center;
-                            graphicsNames.DrawString(drawText, drawFont, brush1, pa6[10].X, (pa6[10].Y+pa6[5].Y)/2f, format);
+                            graphicsNames.DrawString(drawText, drawFont, brush1, pa6[10].X, (pa6[10].Y + pa6[5].Y) / 2f, format);
 
-                            //        }
                             graphicsNames.DrawImage(namesImage, new Point(0, 0));
                         }
                     }
@@ -382,9 +155,9 @@ namespace RandomTool
 
                 try
                 {
-                    if (_ControlHat3D.Parent.InvokeRequired)
+                    if (_ControlHat.Parent.InvokeRequired)
                     {
-                        _ControlHat3D.Parent.Invoke((MethodInvoker)delegate
+                        _ControlHat.Parent.Invoke((MethodInvoker)delegate
                         {
                             _ControlHat.Refresh();
                         });
@@ -396,9 +169,7 @@ namespace RandomTool
                 }
                 catch
                 { }
-            //_ControlHat.Refresh();
-        }
-            //DrawArrow();
+            }
         }
 
         public void Refresh()
@@ -412,13 +183,7 @@ namespace RandomTool
             p1.X -= ToolSize.Left; p2.X += ToolSize.Left;
             return new PointF((float)((p1.X + p2.X) / 2f), (float)((p1.Y + p2.Y) / 2f));
         }
-        private PointF MidPoint(PointF p1, PointF p2, int cycles = 0)
-        {
-            PointF p = p2;
-            for (int i = 0; i <= cycles; i++)
-            { p = CalculateMidPoint(p1, p); }
-            return p;
-        }
+
         private int GetCorrectSize(string word)
         {
             int size = 13;

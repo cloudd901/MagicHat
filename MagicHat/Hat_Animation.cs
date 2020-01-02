@@ -151,9 +151,9 @@ namespace RandomTool
                         ToolActionCall?.Invoke(currentEntry, new string[] { randPowerType.ToString() + "|" + randStrength.ToString(), (randomCount+0.4f).ToString("0"), (animationAngle - originalAnimationAngle).ToString(), originalRandomCount.ToString("0") });
                         try
                         {
-                            if (_ControlHat3D.Parent.InvokeRequired)
+                            if (_ControlHat.Parent.InvokeRequired)
                             {
-                                _ControlHat3D.Parent.Invoke((MethodInvoker)delegate
+                                _ControlHat.Parent.Invoke((MethodInvoker)delegate
                                 {
                                     _ControlHat.Update();
                             });
