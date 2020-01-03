@@ -148,7 +148,7 @@ namespace RandomTool
                             catch (InvalidOperationException) { }
                         }
 
-                        ToolActionCall?.Invoke(currentEntry, new string[] { randPowerType.ToString() + "|" + randStrength.ToString(), (randomCount+0.4f).ToString("0"), (animationAngle - originalAnimationAngle).ToString(), originalRandomCount.ToString("0") });
+                        ToolActionCall?.Invoke(currentEntry, new string[] { randPowerType.ToString() + "|" + randStrength.ToString(), (originalRandomCount-(randomCount+1f)).ToString("0"), (animationAngle - originalAnimationAngle).ToString(), originalRandomCount.ToString("0") });
                         try
                         {
                             if (_ControlHat.Parent.InvokeRequired)
