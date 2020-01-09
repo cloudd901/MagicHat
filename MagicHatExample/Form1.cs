@@ -561,6 +561,7 @@ namespace MagicHatExample
         {
             hat.ToolActionCall -= Hat_HatAnimateCall;
             hat.ToolStopCall -= Hat_HatStopCall;
+            hat.Stop();
         }
     }
 }

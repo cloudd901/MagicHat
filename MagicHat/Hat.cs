@@ -24,9 +24,9 @@ namespace RandomTool
         public bool AllowExceptions { get; set; } = true;
         public bool IsBusy { get; private set; } = false;
 
-        public Hat(Form contentForm)
+        public Hat(Control contentForm)
         {
-            Form ContentWindow = contentForm ?? throw new NullReferenceException("A valid control must be used.");
+            Control ContentWindow = contentForm ?? throw new NullReferenceException("A valid control must be used.");
             _ControlHat.Parent = ContentWindow;
             ContentWindow.Controls.Add(_ControlHat);
         }
