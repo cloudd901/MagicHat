@@ -165,7 +165,8 @@ namespace RandomTool
                         }
                         catch { break; }
                         if (breakfree) { break; }
-                        animationAngle += 1;
+                        // Need 1 as default. AnimationSpeed default is 0.8.
+                        animationAngle += 1.25f * ToolProperties.AnimationSpeed;
                     }
                 }
             }

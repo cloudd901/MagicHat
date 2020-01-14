@@ -563,5 +563,10 @@ namespace MagicHatExample
             hat.ToolStopCall -= Hat_HatStopCall;
             hat.Stop();
         }
+
+        private void NumericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            hat.ToolProperties.AnimationSpeed = (float)numericUpDown1.Value;
+        }
     }
 }
